@@ -2,8 +2,8 @@ using Domain.Implementations;
 using Domain.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
-using System.Reflection;
 using System.Xml.Linq;
+
 
 namespace UnitTest
 {
@@ -67,6 +67,21 @@ namespace UnitTest
 
             Assert.AreEqual("!dlrow olleH", actualReversedText);
             Assert.AreEqual("Hello world!", actualText);
+        }
+
+        [TestMethod]
+        public void AAdminShouldBeAbleToReadXMLFilesInRoleBasedSecurityContext()
+        {
+            IFileReader fileReader = new XmlFileReader();
+            Authorization adminAuthorization = new AdminAuthorization(fileReader);
+
+            var filename = $@"{_currentDirectory}\files\admin.xml";
+
+            var actual = XElement.Parse(adminAuthorization.Read(filename));
+
+            var expected = XElement.Parse("<?xml version=\"1.0\"?><text>Hello admin!</text>");
+
+            Assert.AreEqual(expected.ToString(), actual.ToString());
         }
     }
 }
