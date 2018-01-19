@@ -1,5 +1,5 @@
 ﻿using Domain.Interfaces;
-using System;
+using System.Linq;
 
 namespace Domain.Implementations
 {
@@ -7,7 +7,10 @@ namespace Domain.Implementations
     {
         public string Encrypt(string content)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(content))
+                return content;
+
+            return string.Concat(content.Reverse());
         }
     }
 }
