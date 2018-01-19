@@ -83,5 +83,23 @@ namespace UnitTest
 
             Assert.AreEqual(expected.ToString(), actual.ToString());
         }
+
+        [TestMethod]
+        public void AUserShouldBeAbleToReadLimitedXMLFilesInRoleBasedSecurityContext()
+        {
+            IFileReader fileReader = new XmlFileReader();
+            Authorization userAuthorization = new UserAuthorization(fileReader);
+
+            var adminFilename = $@"{_currentDirectory}\files\admin.xml";
+            var filename = $@"{_currentDirectory}\files\xmlFile.xml";
+
+            var actualAdmin = userAuthorization.Read(adminFilename);
+            var actual = XElement.Parse(userAuthorization.Read(filename));
+
+            var expected = XElement.Parse("<?xml version=\"1.0\"?><text>Hello admin!</text>");
+
+            Assert.AreEqual(string.Empty, actualAdmin);
+            Assert.AreEqual(expected.ToString(), actual.ToString());
+        }
     }
 }
