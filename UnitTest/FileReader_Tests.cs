@@ -70,7 +70,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void AAdminShouldBeAbleToReadXMLFilesInRoleBasedSecurityContext()
+        public void AAdminShouldBeAbleToReadAllXMLFilesInRoleBasedSecurityContext()
         {
             IFileReader fileReader = new XmlFileReader();
             Authorization adminAuthorization = new AdminAuthorization(fileReader);
