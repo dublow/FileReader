@@ -10,9 +10,7 @@ namespace Domain.Implementations
 
         public TextFileReader(IEncryptor encryptor = null)
         {
-            _encryptor = encryptor == null
-                ? VoidEncryptor.Instance
-                : encryptor;
+            EnsureEncryption(encryptor);
         }
 
         public string Read(string path)
@@ -24,6 +22,11 @@ namespace Domain.Implementations
         }
 
         public void SetEncryptor(IEncryptor encryptor)
+        {
+            EnsureEncryption(encryptor);
+        }
+
+        private void EnsureEncryption(IEncryptor encryptor = null)
         {
             _encryptor = encryptor == null
                 ? VoidEncryptor.Instance
