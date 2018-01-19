@@ -28,5 +28,10 @@ namespace Domain.Implementations
 
             return Encryptor.Encrypt(jsonAsString);
         }
+
+        public void SetEncryptor(IEncryptor encryptor)
+        {
+            Encryptor = Ensures.CurrentOrDefaultEncryption(encryptor);
+        }
     }
 }
