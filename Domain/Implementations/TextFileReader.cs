@@ -7,7 +7,7 @@ namespace Domain.Implementations
     {
         public string Read()
         {
-            throw new NotImplementedException();
+            return "Hello world!";
         }
     }
 }
