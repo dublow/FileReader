@@ -8,10 +8,14 @@
 
   <ItemGroup>
     <None Remove="files\textFile.txt" />
+    <None Remove="files\xmlFile.xml" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="files\textFile.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="files\xmlFile.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
