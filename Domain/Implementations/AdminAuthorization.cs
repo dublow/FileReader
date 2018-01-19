@@ -9,7 +9,7 @@ namespace Domain.Implementations
 
         public override bool CanRead(string path)
         {
-            throw new System.NotImplementedException();
+            return true;
         }
     }
 }
