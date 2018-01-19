@@ -171,7 +171,7 @@ namespace UnitTest
 
             var actual = fileReader.Read(filename);
 
-            Assert.AreEqual("{text: 'Hello world!'}", actual);
+            Assert.AreEqual("{\r\n  \"text\": \"Hello world!\"\r\n}", actual);
         }
     }
 }

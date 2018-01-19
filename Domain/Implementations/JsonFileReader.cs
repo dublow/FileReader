@@ -1,7 +1,8 @@
-﻿using Domain.Interfaces;
+﻿using Common.Extensions;
+using Domain.Interfaces;
+using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.IO;
 
 namespace Domain.Implementations
 {
@@ -11,7 +12,15 @@ namespace Domain.Implementations
 
         public string Read(string path)
         {
-            throw new NotImplementedException();
+            if (!File.Exists(path))
+                throw new ArgumentNullException(nameof(path));
+
+            var jsonAsString = File.ReadAllText(path);
+
+            if (!jsonAsString.TryParse(out JObject xml))
+                throw new InvalidOperationException("Content file is not a Json");
+
+            return jsonAsString;
         }
     }
 }

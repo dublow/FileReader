@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using Common.Extensions;
+using System.Xml.Linq;
 
 namespace Domain.Implementations
 {
@@ -21,10 +22,10 @@ namespace Domain.Implementations
 
             var xmlAsString = File.ReadAllText(path);
 
-            if (!xmlAsString.TryParse(out var xml))
+            if (!xmlAsString.TryParse(out XElement xml))
                 throw new InvalidOperationException("Content file is not a XML");
 
-            return Encryptor.Encrypt(xmlAsString); ;
+            return Encryptor.Encrypt(xmlAsString);
         }
 
         public void SetEncryptor(IEncryptor encryptor)
