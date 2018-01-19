@@ -1,9 +1,11 @@
 ﻿using Domain.Interfaces;
+using System;
 
 namespace Domain.Implementations
 {
     public class VoidEncryptor : IEncryptor
     {
+        [ThreadStatic]
         private static VoidEncryptor _instance;
 
         private VoidEncryptor()

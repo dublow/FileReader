@@ -6,9 +6,6 @@ namespace Domain.Implementations
     {
         private readonly IFileReader _fileReader;
 
-        public IEncryptor Encryptor
-            => _fileReader.Encryptor;
-
         protected Authorization(IFileReader fileReader)
         {
             _fileReader = fileReader;
