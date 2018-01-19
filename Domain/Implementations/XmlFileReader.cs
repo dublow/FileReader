@@ -27,6 +27,11 @@ namespace Domain.Implementations
             return _encryptor.Encrypt(xmlAsString); ;
         }
 
+        public void SetEncryptor(IEncryptor encryptor)
+        {
+            EnsureEncryption(encryptor);
+        }
+
         private void EnsureEncryption(IEncryptor encryptor = null)
         {
             _encryptor = encryptor == null
