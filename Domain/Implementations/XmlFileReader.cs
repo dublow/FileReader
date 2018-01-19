@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using Common.Extensions;
 using System.Xml.Linq;
+using Domain.Helpers;
 
 namespace Domain.Implementations
 {
@@ -12,7 +13,7 @@ namespace Domain.Implementations
 
         public XmlFileReader(IEncryptor encryptor = null)
         {
-            EnsureEncryption(encryptor);
+            Encryptor = Ensures.CurrentOrDefaultEncryption(encryptor);
         }
 
         public string Read(string path)
@@ -30,14 +31,7 @@ namespace Domain.Implementations
 
         public void SetEncryptor(IEncryptor encryptor)
         {
-            EnsureEncryption(encryptor);
-        }
-
-        private void EnsureEncryption(IEncryptor encryptor = null)
-        {
-            Encryptor = encryptor == null
-                ? VoidEncryptor.Instance
-                : encryptor;
+            Encryptor = Ensures.CurrentOrDefaultEncryption(encryptor);
         }
     }
 }

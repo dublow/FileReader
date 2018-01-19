@@ -1,4 +1,5 @@
 ﻿using Common.Extensions;
+using Domain.Helpers;
 using Domain.Interfaces;
 using Newtonsoft.Json.Linq;
 using System;
@@ -12,7 +13,7 @@ namespace Domain.Implementations
 
         public JsonFileReader(IEncryptor encryptor = null)
         {
-            EnsureEncryption(encryptor);
+            Encryptor = Ensures.CurrentOrDefaultEncryption(encryptor);
         }
 
         public string Read(string path)
@@ -26,13 +27,6 @@ namespace Domain.Implementations
                 throw new InvalidOperationException("Content file is not a Json");
 
             return Encryptor.Encrypt(jsonAsString);
-        }
-
-        private void EnsureEncryption(IEncryptor encryptor = null)
-        {
-            Encryptor = encryptor == null
-                ? VoidEncryptor.Instance
-                : encryptor;
         }
     }
 }
