@@ -132,5 +132,18 @@ namespace UnitTest
             Assert.AreEqual("\n\r>txet/<!dlrow olleH>txet<\n\r>?\"0.1\"=noisrev lmx?<", actualReversedXml);
             Assert.AreEqual("<?xml version=\"1.0\"?>\r\n<text>Hello world!</text>\r\n", actualXml);
         }
+
+        [TestMethod]
+        public void AAdminShouldBeAbleToReadAllTextFilesInRoleBasedSecurityContext()
+        {
+            IFileReader fileReader = new TextFileReader();
+            Authorization adminAuthorization = new AdminAuthorization(fileReader);
+
+            var filename = $@"{_currentDirectory}\files\admin.txt";
+
+            var actual = adminAuthorization.Read(filename);
+
+            Assert.AreEqual("Hello admin!", actual.ToString());
+        }
     }
 }
