@@ -1,7 +1,7 @@
 ﻿namespace Domain.Interfaces
 {
-    public interface IFileReader<T>
+    public interface IFileReader
     {
-        T Read();
+        string Read(string path);
     }
 }
