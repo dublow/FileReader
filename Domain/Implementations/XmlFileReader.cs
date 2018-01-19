@@ -7,7 +7,7 @@ using Domain.Helpers;
 
 namespace Domain.Implementations
 {
-    public class XmlFileReader : IFileReader
+    public class XmlFileReader : IFileReader, IEncryption
     {
         public IEncryptor Encryptor { get; private set; }
 

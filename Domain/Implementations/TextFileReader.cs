@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Domain.Implementations
 {
-    public class TextFileReader : IFileReader
+    public class TextFileReader : IFileReader, IEncryption
     {
         public IEncryptor Encryptor { get; private set; }
 

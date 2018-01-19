@@ -7,7 +7,7 @@ using System.IO;
 
 namespace Domain.Implementations
 {
-    public class JsonFileReader : IFileReader
+    public class JsonFileReader : IFileReader, IEncryption
     {
         public IEncryptor Encryptor { get; private set; }
 
