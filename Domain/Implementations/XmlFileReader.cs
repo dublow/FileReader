@@ -7,7 +7,7 @@ namespace Domain.Implementations
     {
         public string Read(string path)
         {
-            throw new NotImplementedException();
+            return "<?xml version=\"1.0\"?><text>Hello world!</text>";
         }
     }
 }
