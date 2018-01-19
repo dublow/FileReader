@@ -101,5 +101,36 @@ namespace UnitTest
             Assert.AreEqual(string.Empty, actualAdmin);
             Assert.AreEqual(expected.ToString(), actual.ToString());
         }
+
+        [TestMethod]
+        public void AUserShouldBeAbleToReadAnEncryptedXMLFile()
+        {
+            IEncryptor encryptor = new ReverseEncryptor();
+            IFileReader fileReader = new XmlFileReader(encryptor);
+
+            var filename = $@"{_currentDirectory}\files\xmlFile.xml";
+
+            var actual = fileReader.Read(filename);
+            
+            Assert.AreEqual("\n\r>txet/<!dlrow olleH>txet<\n\r>?\"0.1\"=noisrev lmx?<", actual);
+        }
+
+        [TestMethod]
+        public void AUserShouldBeAbleToSwitchEncryptionXmlFile()
+        {
+            IEncryptor encryptor = new ReverseEncryptor();
+            var fileReader = new XmlFileReader(encryptor);
+
+            var filename = $@"{_currentDirectory}\files\xmlFile.xml";
+
+            var actualReversedXml = fileReader.Read(filename);
+
+            fileReader.SetEncryptor(VoidEncryptor.Instance);
+
+            var actualXml = fileReader.Read(filename);
+
+            Assert.AreEqual("\n\r>txet/<!dlrow olleH>txet<\n\r>?\"0.1\"=noisrev lmx?<", actualReversedXml);
+            Assert.AreEqual("<?xml version=\"1.0\"?>\r\n<text>Hello world!</text>\r\n", actualXml);
+        }
     }
 }
