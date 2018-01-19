@@ -6,7 +6,7 @@ namespace Domain.Implementations
 {
     public class TextFileReader : IFileReader
     {
-        private IEncryptor _encryptor;
+        public IEncryptor Encryptor { get; private set; }
 
         public TextFileReader(IEncryptor encryptor = null)
         {
@@ -18,7 +18,7 @@ namespace Domain.Implementations
             if (!File.Exists(path))
                 throw new ArgumentNullException(nameof(path));
 
-            return _encryptor.Encrypt(File.ReadAllText(path));
+            return Encryptor.Encrypt(File.ReadAllText(path));
         }
 
         public void SetEncryptor(IEncryptor encryptor)
@@ -28,7 +28,7 @@ namespace Domain.Implementations
 
         private void EnsureEncryption(IEncryptor encryptor = null)
         {
-            _encryptor = encryptor == null
+            Encryptor = encryptor == null
                 ? VoidEncryptor.Instance
                 : encryptor;
         }
