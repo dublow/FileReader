@@ -22,5 +22,12 @@ namespace Domain.Implementations
 
             return _encryptor.Encrypt(File.ReadAllText(path));
         }
+
+        public void SetEncryptor(IEncryptor encryptor)
+        {
+            _encryptor = encryptor == null
+                ? VoidEncryptor.Instance
+                : encryptor;
+        }
     }
 }
