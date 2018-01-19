@@ -22,5 +22,17 @@ namespace UnitTest
 
             Assert.AreEqual("Hello world!", actual);
         }
+
+        [TestMethod]
+        public void AUserShouldBeAbleToReadAXMLFile()
+        {
+            IFileReader fileReader = new XmlFileReader();
+
+            var filename = $@"{_currentDirectory}\files\xmlFile.xml";
+
+            var actual = fileReader.Read(filename);
+
+            Assert.AreEqual("<?xml version=\"1.0\"?><text>Hello world!</text>", actual);
+        }
     }
 }
