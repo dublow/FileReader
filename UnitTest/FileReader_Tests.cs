@@ -145,5 +145,21 @@ namespace UnitTest
 
             Assert.AreEqual("Hello admin!", actual.ToString());
         }
+
+        [TestMethod]
+        public void AUserShouldBeAbleToReadLimitedTextFilesInRoleBasedSecurityContext()
+        {
+            IFileReader fileReader = new TextFileReader();
+            Authorization userAuthorization = new UserAuthorization(fileReader);
+
+            var adminFilename = $@"{_currentDirectory}\files\admin.txt";
+            var filename = $@"{_currentDirectory}\files\textFile.txt";
+
+            var actualAdmin = userAuthorization.Read(adminFilename);
+            var actual = userAuthorization.Read(filename);
+
+            Assert.AreEqual(string.Empty, actualAdmin);
+            Assert.AreEqual("Hello world!", actual.ToString());
+        }
     }
 }
