@@ -1,5 +1,4 @@
 ﻿using Domain.Interfaces;
-using System;
 
 namespace Domain.Implementations
 {
@@ -10,7 +9,9 @@ namespace Domain.Implementations
 
         public override bool CanRead(string path)
         {
-            throw new NotImplementedException();
+            return 
+                !string.IsNullOrEmpty(path)
+                && !path.Contains("admin");
         }
     }
 }

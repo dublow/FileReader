@@ -96,7 +96,7 @@ namespace UnitTest
             var actualAdmin = userAuthorization.Read(adminFilename);
             var actual = XElement.Parse(userAuthorization.Read(filename));
 
-            var expected = XElement.Parse("<?xml version=\"1.0\"?><text>Hello admin!</text>");
+            var expected = XElement.Parse("<?xml version=\"1.0\"?><text>Hello world!</text>");
 
             Assert.AreEqual(string.Empty, actualAdmin);
             Assert.AreEqual(expected.ToString(), actual.ToString());
