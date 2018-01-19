@@ -161,5 +161,17 @@ namespace UnitTest
             Assert.AreEqual(string.Empty, actualAdmin);
             Assert.AreEqual("Hello world!", actual.ToString());
         }
+
+        [TestMethod]
+        public void AUserShouldBeAbleToReadAJsonFile()
+        {
+            IFileReader fileReader = new JsonFileReader();
+
+            var filename = $@"{_currentDirectory}\files\jsonFile.json";
+
+            var actual = fileReader.Read(filename);
+
+            Assert.AreEqual("{\r\n  \"text\": \"Hello world!\"\r\n}", actual);
+        }
     }
 }
