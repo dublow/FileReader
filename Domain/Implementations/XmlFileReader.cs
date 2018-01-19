@@ -1,5 +1,7 @@
 ﻿using Domain.Interfaces;
 using System;
+using System.IO;
+using Common.Extensions;
 
 namespace Domain.Implementations
 {
@@ -7,7 +9,15 @@ namespace Domain.Implementations
     {
         public string Read(string path)
         {
-            return "<?xml version=\"1.0\"?><text>Hello world!</text>";
+            if (!File.Exists(path))
+                throw new ArgumentNullException(nameof(path));
+
+            var xmlAsString = File.ReadAllText(path);
+
+            if (!xmlAsString.TryParse(out var xml))
+                throw new InvalidOperationException("Content file is not a XML");
+
+            return xmlAsString;
         }
     }
 }

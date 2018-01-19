@@ -3,6 +3,7 @@ using Domain.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Reflection;
+using System.Xml.Linq;
 
 namespace UnitTest
 {
@@ -30,9 +31,11 @@ namespace UnitTest
 
             var filename = $@"{_currentDirectory}\files\xmlFile.xml";
 
-            var actual = fileReader.Read(filename);
+            var actual = XElement.Parse(fileReader.Read(filename));
 
-            Assert.AreEqual("<?xml version=\"1.0\"?><text>Hello world!</text>", actual);
+            var expected = XElement.Parse("<?xml version=\"1.0\"?><text>Hello world!</text>");
+
+            Assert.AreEqual(expected.ToString(), actual.ToString());
         }
     }
 }
