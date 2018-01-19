@@ -173,5 +173,18 @@ namespace UnitTest
 
             Assert.AreEqual("{\r\n  \"text\": \"Hello world!\"\r\n}", actual);
         }
+
+        [TestMethod]
+        public void AUserShouldBeAbleToReadAEncryptedJsonFile()
+        {
+            IEncryptor encryptor = new ReverseEncryptor();
+            IFileReader fileReader = new JsonFileReader(encryptor);
+
+            var filename = $@"{_currentDirectory}\files\jsonFile.json";
+
+            var actual = fileReader.Read(filename);
+            
+            Assert.AreEqual("}\n\r\"!dlrow olleH\" :\"txet\"  \n\r{", actual);
+        }
     }
 }
