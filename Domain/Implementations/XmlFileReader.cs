@@ -7,6 +7,13 @@ namespace Domain.Implementations
 {
     public class XmlFileReader : IFileReader
     {
+        private IEncryptor _encryptor;
+
+        public XmlFileReader(IEncryptor encryptor = null)
+        {
+            EnsureEncryption(encryptor);
+        }
+
         public string Read(string path)
         {
             if (!File.Exists(path))
@@ -17,7 +24,14 @@ namespace Domain.Implementations
             if (!xmlAsString.TryParse(out var xml))
                 throw new InvalidOperationException("Content file is not a XML");
 
-            return xmlAsString;
+            return _encryptor.Encrypt(xmlAsString); ;
+        }
+
+        private void EnsureEncryption(IEncryptor encryptor = null)
+        {
+            _encryptor = encryptor == null
+                ? VoidEncryptor.Instance
+                : encryptor;
         }
     }
 }
