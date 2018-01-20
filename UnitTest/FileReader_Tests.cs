@@ -217,5 +217,21 @@ namespace UnitTest
 
             Assert.AreEqual("{\r\n  \"text\": \"Hello admin!\"\r\n}", actual.ToString());
         }
+
+        [TestMethod]
+        public void AnUserShouldBeAbleToReadLimitedJsonFilesInRoleBasedSecurityContext()
+        {
+            IFileReader fileReader = new JsonFileReader();
+            Authorization userAuthorization = new UserAuthorization(fileReader);
+
+            var adminFilename = $@"{_currentDirectory}\files\admin.json";
+            var filename = $@"{_currentDirectory}\files\jsonFile.json";
+
+            var actualAdmin = userAuthorization.Read(adminFilename);
+            var actual = userAuthorization.Read(filename);
+
+            Assert.AreEqual(string.Empty, actualAdmin);
+            Assert.AreEqual("{\r\n  \"text\": \"Hello world!\"\r\n}", actual.ToString());
+        }
     }
 }
