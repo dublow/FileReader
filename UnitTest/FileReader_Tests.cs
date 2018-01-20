@@ -204,5 +204,34 @@ namespace UnitTest
             Assert.AreEqual("}\n\r\"!dlrow olleH\" :\"txet\"  \n\r{", actualReversedText);
             Assert.AreEqual("{\r\n  \"text\": \"Hello world!\"\r\n}", actualText);
         }
+
+        [TestMethod]
+        public void AAdminShouldBeAbleToReadAllJsonFilesInRoleBasedSecurityContext()
+        {
+            IFileReader fileReader = new JsonFileReader();
+            Authorization adminAuthorization = new AdminAuthorization(fileReader);
+
+            var filename = $@"{_currentDirectory}\files\admin.json";
+
+            var actual = adminAuthorization.Read(filename);
+
+            Assert.AreEqual("{\r\n  \"text\": \"Hello admin!\"\r\n}", actual.ToString());
+        }
+
+        [TestMethod]
+        public void AUserShouldBeAbleToReadLimitedJsonFilesInRoleBasedSecurityContext()
+        {
+            IFileReader fileReader = new JsonFileReader();
+            Authorization userAuthorization = new UserAuthorization(fileReader);
+
+            var adminFilename = $@"{_currentDirectory}\files\admin.json";
+            var filename = $@"{_currentDirectory}\files\jsonFile.json";
+
+            var actualAdmin = userAuthorization.Read(adminFilename);
+            var actual = userAuthorization.Read(filename);
+
+            Assert.AreEqual(string.Empty, actualAdmin);
+            Assert.AreEqual("{\r\n  \"text\": \"Hello world!\"\r\n}", actual.ToString());
+        }
     }
 }
