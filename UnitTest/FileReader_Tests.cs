@@ -219,7 +219,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void AnUserShouldBeAbleToReadLimitedJsonFilesInRoleBasedSecurityContext()
+        public void AUserShouldBeAbleToReadLimitedJsonFilesInRoleBasedSecurityContext()
         {
             IFileReader fileReader = new JsonFileReader();
             Authorization userAuthorization = new UserAuthorization(fileReader);
