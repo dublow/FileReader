@@ -1,6 +1,6 @@
-﻿using Domain.Interfaces;
+﻿using Business.Interfaces;
 
-namespace Domain.Implementations
+namespace Business.Implementations
 {
     public class AdminAuthorization : Authorization
     {

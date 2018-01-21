@@ -1,7 +1,7 @@
-﻿using Domain.Implementations;
-using Domain.Interfaces;
+﻿using Business.Implementations;
+using Business.Interfaces;
 
-namespace Domain.Helpers
+namespace Business.Helpers
 {
     internal static class Ensures
     {

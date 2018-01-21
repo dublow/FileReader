@@ -1,9 +1,9 @@
-﻿using Domain.Helpers;
-using Domain.Interfaces;
+﻿using Business.Helpers;
+using Business.Interfaces;
 using System;
 using System.IO;
 
-namespace Domain.Implementations
+namespace Business.Implementations
 {
     public class TextFileReader : IFileReader, IEncryption
     {

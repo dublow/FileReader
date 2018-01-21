@@ -1,11 +1,11 @@
-﻿using Common.Extensions;
-using Domain.Helpers;
-using Domain.Interfaces;
+﻿using Business.Helpers;
+using Business.Interfaces;
+using Common.Extensions;
 using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 
-namespace Domain.Implementations
+namespace Business.Implementations
 {
     public class JsonFileReader : IFileReader, IEncryption
     {

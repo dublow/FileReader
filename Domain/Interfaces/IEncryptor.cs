@@ -1,4 +1,4 @@
-﻿namespace Domain.Interfaces
+﻿namespace Business.Interfaces
 {
     public interface IEncryptor
     {

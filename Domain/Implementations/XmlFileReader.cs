@@ -1,11 +1,11 @@
-﻿using Domain.Interfaces;
-using System;
+﻿using System;
 using System.IO;
 using Common.Extensions;
 using System.Xml.Linq;
-using Domain.Helpers;
+using Business.Interfaces;
+using Business.Helpers;
 
-namespace Domain.Implementations
+namespace Business.Implementations
 {
     public class XmlFileReader : IFileReader, IEncryption
     {
