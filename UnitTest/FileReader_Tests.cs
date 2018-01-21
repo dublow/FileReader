@@ -1,5 +1,5 @@
-using Domain.Implementations;
-using Domain.Interfaces;
+using Business.Implementations;
+using Business.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Xml.Linq;

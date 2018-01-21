@@ -1,7 +1,7 @@
-﻿using Domain.Interfaces;
+﻿using Business.Interfaces;
 using System;
 
-namespace Domain.Implementations
+namespace Business.Implementations
 {
     public class VoidEncryptor : IEncryptor
     {
